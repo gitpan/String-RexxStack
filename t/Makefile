@@ -26,9 +26,7 @@ MODULES = -Mstrict  -MData::Dumper -MCarp
 #all: sdoc
 #all: server 
 #all: client
-#all: t6_pull.t
-all: del
-#all: n3_filter.t
+all: n1_newstack.t
 
 
 del:
@@ -37,7 +35,7 @@ del:
 n*t:
 	$(PERL) $(OPTS)  $(MODULES) -MString::RexxStack::Named $@
 
-t*t:
+d*t t*t:
 	$(PERL) $(OPTS)  $(MODULES) $@
 
 clean:

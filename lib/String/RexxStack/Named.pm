@@ -11,7 +11,7 @@ use Filter::Simple;
 use Want  qw(wantref want);
 use Data::Dumper;
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 our @EXPORT      = qw(  pull Pull Push Pop clear qelem Queue  );
 
@@ -224,6 +224,12 @@ both terms interchangeably.
 
 =over
 
+=item STORE FUNCTIONS
+
+ queue(), PUSH()
+
+=over 8
+  
 =item PUSH()
 
  Usage: Push  stack_name   elements...
@@ -259,6 +265,14 @@ therefore, it similar to unshift (reverse @_) .  The return value is not defined
 
 An alias for Queue() .
 
+=back
+
+=item RETRIEVE FUNCTIONS
+
+ Pull(), Pop(), pull()
+
+=over 8
+
 =item Pull()
 
  Usage: Pull  stack_name   N
@@ -283,18 +297,48 @@ Returns all elements of the stack as an array of strings.  After
 this operation, the stack will be empty.  When unspecified, 
 stack_name defaults to 'SESSION'.  Returns undef on failure;
 
+=back
+
+=item MISC FUNCTIONS
+
+ newstck(), delstack(), qelem(), clear(), 
+ printq() , printq_s(), dumpe(), dumpe_s, info(), 
+
+=over 8
+
+=item newstack()
+
+ Usage: [NEWSTACK 'stack_name']
+        [NEWSTACK]
+
+The current stack is pushed into an (inaccessible) array of saved
+stacks, then a new empty stack is created (with the same stack 
+limits) and becomes the current stack.  Returns a reference to
+the newly created stack when called in HASH context, or returns
+the number of stacks (after the operation) when called in SCALAR (but
+not HASH) context. It returns  undef on failure.
+
+When unspecified, stack_name defaults to 'SESSION'.
+
+=item delstack()
+
+ Usage: [DELSTACK 'stack_name' ]
+        [DELSTACK]
+
+Deletes the current the stack and the most recently saved stack
+becomes the current stack. If before the operation there were no
+saved stacks, it will just empty the current stack.  Returns the
+total number of stacks (after the operation). The DELSTACK 
+command never fails, and the lowest possible return value is 1 .
+
+When unspecified, stack_name defaults to 'SESSION'. 
+
+
 =item qelem()
 
  Usage: qelem [ stack_name ] 
 
 Returns the number of entries (elements) in the stack. When unspecified,
-stack_name defaults to 'SESSION'.  Returns undef on failure;
-
-=item qbuf()
-
- Usage: qbuf [ stack_name ] 
-
-Returns the number of buffers in the stack. When unspecified,
 stack_name defaults to 'SESSION'.  Returns undef on failure;
 
 =item clear()
@@ -317,6 +361,42 @@ When unspecified, stack_name defaults to 'SESSION'.  Returns undef on failure;
 
 Returns a string containing all elements of the stack. (The stack remains unchanged.)
 When unspecified, stack_name defaults to 'SESSION'.  Returns undef on failure;
+
+=item dumpe()
+
+ Usage:  dumpe  [ 'stack_name' ]
+
+Prints to stdout the data structure that contains the
+current stack and any saved stacks.
+ 
+When unspecified, stack_name defaults to 'SESSION'. 
+
+=item dumpe_s()
+
+Same like dumpe(), except that the return value is the string that
+dumpe() would have printed to stdout.
+
+=item info()
+
+ Usage:  print [INFO] ;
+
+Prints to stdout information about he current state of named stacks.
+The return value is undefined.
+
+=back
+
+=item BUFFER FUNCTIONS
+
+ qbuf(), makebuf(), dropbuf(), desbuf()
+
+=over 8
+
+=item qbuf()
+
+ Usage: qbuf [ stack_name ] 
+
+Returns the number of buffers in the stack. When unspecified,
+stack_name defaults to 'SESSION'.  Returns undef on failure;
 
 =item makebuf()
 
@@ -354,54 +434,14 @@ could still contain elements that were not in any buffer.
 
 stack_name defaults to 'SESSION'.  Returns undef on failure;
 
-=item newstack()
+=back
 
- Usage: [NEWSTACK 'stack_name']
-        [NEWSTACK]
 
-The current stack is pushed into an (inaccessible) array of saved
-stacks, then a new empty stack is created (with the same stack 
-limits) and becomes the current stack.  Returns a reference to
-the newly created stack when called in HASH context, or returns
-the number of stacks (after the operation) when called in SCALAR (but
-not HASH) context. It returns  undef on failure.
+=item LIMIT FUNCTIONS
 
-When unspecified, stack_name defaults to 'SESSION'.
+ limit_entries(), limit_bytes(), limits()
 
-=item delstack()
-
- Usage: [DELSTACK 'stack_name' ]
-        [DELSTACK]
-
-Deletes the current the stack and the most recently saved stack
-becomes the current stack. If before the operation there were no
-saved stacks, it will just empty the current stack.  Returns the
-total number of stacks (after the operation). The DELSTACK 
-command never fails, and the lowest possible return value is 1 .
-
-When unspecified, stack_name defaults to 'SESSION'. 
-
-=item dumpe()
-
- Usage:  dumpe  [ 'stack_name' ]
-
-Prints to stdout the data structure that contains the
-current stack and any saved stacks.
- 
-When unspecified, stack_name defaults to 'SESSION'. 
-
-=item dumpe_s()
-
-Same like dumpe(), except that the return value is the string that
-dumpe() would have printed to stdout.
-
-=item info()
-
- Usage:  print [INFO] ;
-
-Prints to stdout information about he current state of named stacks.
-The return value is undefined.
-
+=over 8
  
 =item limit_entries()
 
@@ -454,6 +494,7 @@ consisting of the results from limit_entries and then from limit_bytes, in
 this order. When called with 3 arguments, it calls to initialize
 limit_entries and then limit_bytes. 
 
+=back
 
 =back
 
@@ -469,7 +510,7 @@ Ioannis Tambouras, E<lt>ioannis@earthlink.netE<gt>
 =head1 SEE ALSO
 
 L<String::TieStack>,
-L<regina(1)>
+L<regina>
 
 =cut
 

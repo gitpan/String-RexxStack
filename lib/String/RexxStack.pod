@@ -2,9 +2,6 @@
 
 String::RexxStack - Introduction to RexxStack modules
 
-=head1 SYNOPSIS
-
-
 =head1 DESCRIPTION
 
 RexxStack is an implementation of a more elaborate stack data structure
@@ -25,7 +22,7 @@ applications and perhaps the shell itself.
  (b) It support multiple stacks in stack- within-stack fashion, 
 
  (c) It supports both a Perlish and Rexx systax -- the Rexx syntax 
-     is probably simpler, and 
+     is probably simpler.
 
  (d) The stack scope can be internal to  the application (as usual), or 
      the Stack can run as a daemon to enable sharing of data between 
@@ -43,7 +40,6 @@ release, I decided to withhold publication of everything related to
 networking for a future day. Send me an email if you need an
 advanced copy.
 
-=back
 
 =head1 Roadmap
 
@@ -73,7 +69,6 @@ Ioannis Tambouras, E<lt>ioannis@earthlink.netE<gt>
 =head1 SEE ALSO
 
 L<String::RexxStack::Named.pm>,
-L<String::RexxStack::Single.pm>,
 L<String::TieStack>,
-L<regina(1)>
+L<regina>
 

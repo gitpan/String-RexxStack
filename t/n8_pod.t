@@ -4,7 +4,7 @@ use IO::File;
 
 my @musthave = ( 
 	qw(  NAME SYNOPSIS DESCRIPTION EXPORT AUTHOR ), 
-        'SEE_ALSO',
+        'SEE ALSO',
 );
 
 
@@ -21,4 +21,7 @@ my @nodes =   $c->node() ;
 
 is  $c->num_errors()  =>   0 , 'no pod errors';
 
-ok  +(grep {$_} @nodes) ,  "have $_"     for @musthave ;
+foreach my $must (@musthave) {
+        ok  +(map {$must =~ /^$_$/ }   @nodes)   , "have $must"  ;
+}
+

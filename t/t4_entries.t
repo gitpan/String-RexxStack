@@ -13,31 +13,31 @@ is  $t->max_entries , 3;
 is  $t->max_KBytes  , 0;
 
 push @arr , 'one';
-is  @arr , 1;
+is  @arr     => 1;
 push @arr , 'two';
-is  @arr , 2;
+is  @arr     => 2;
 push @arr , 'three';
-is  @arr , 3;
+is  @arr     => 3;
 push @arr , 'four';
-is  @arr , 3;
+is  @arr     => 3;
 
 @arr = ();
 push @arr , 'one', 'two', 'three' ;
-is  @arr , 3;
+is  @arr     => 3;
 push @arr , 'four';
-is  @arr , 3;
+is  @arr     => 3;
 
 @arr = ();
 push @arr , 'one', 'two', 'three', 'four' ;
-is  @arr , 0;
+is  @arr => 0;
 
 @arr = ();
 push @arr , 'one';
 push @arr , 'one', 'two', 'three', 'four' ;
-is  @arr , 1;
+is  @arr     => 1;
 
 $t->max_entries(2);
 push @arr, 'two';
-is @arr , 2;
+is @arr     => 2;
 push @arr, 'three';
-is @arr , 2;
+is @arr     => 2;

@@ -12,18 +12,18 @@ is    +( [DELSTACK 'JAck']  )     =>  1 ;
 
 
 Push 'JAck' , 1, 2, 3;
-is     +(qelem 'JAck')           =>  3 ;
+is     +(qelem 'JAck')             =>  3 ;
 [CLEAR 'JAck'];
-is     0                         =>  qelem 'JAck';
+is     0                           =>  qelem 'JAck';
 Push 'JAck', 1, 2;
-is    +do{ [MAKEBUF 'JAck'] }    =>  1 ;
+is    +( [MAKEBUF 'JAck'])         =>  1 ;
 Push 'JAck', 3;
-is    +do{ [MAKEBUF 'JAck'] }    =>  2 ;
-is     qbuf('JAck')              =>  2 ;
+is    +([MAKEBUF 'JAck'])          =>  2 ;
+is     qbuf('JAck')                =>  2 ;
 [DROPBUF 'JAck'] ;
-is     qbuf('JAck')              =>  1 ;
+is     qbuf('JAck')                =>  1 ;
 [DESBUF  'JAck'] ;
-is     qbuf('JAck')              =>  0 ;
+is     qbuf('JAck')                =>  0 ;
 
 ok     [NEWSTACK];
 is    +( [QSTACK ]             )   =>  2 ;

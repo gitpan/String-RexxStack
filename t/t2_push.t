@@ -8,13 +8,13 @@ my $t = tie my @arr , 'String::TieStack' ;
 
 push @arr , 'zero';
 push @arr , 'one', 'two',  'three' ;
-is  @arr , 4;
+is  @arr   => 4;
 
 unshift @arr , '-one';
-is  @arr , 5;
+is  @arr   => 5;
 unshift @arr ,  '-four', '-three', '-two';
-is  @arr , 8;
+is  @arr   => 8;
 pop @arr;
-is  @arr , 7;
+is  @arr   => 7;
 
 #print Dumper $t;
