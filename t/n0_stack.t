@@ -1,8 +1,8 @@
-use Test::More ;
+use Test::More tests=>21;
 use String::RexxStack::Named qw( :all );
-BEGIN { plan tests => 21 }
 
 $Data::Dumper::Indent=2;
+
 
 
 

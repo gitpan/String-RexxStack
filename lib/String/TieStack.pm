@@ -5,7 +5,8 @@
 package String::TieStack ;
 use 5.006;
 use Carp;
-use base Tie::Array;
+use strict;
+use base 'Tie::Array';
 use Data::Dumper;
 use Class::MethodMaker             
 				   new_with_init  => [qw( new TIEARRAY )],
@@ -44,7 +45,7 @@ sub limits {
 
 sub _bytes {
        my $sum;
-       $sum += length $_      for @_ ;
+       $sum += length($_||'')       for @_ ;
        $sum;
 }
 

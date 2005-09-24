@@ -11,7 +11,7 @@ use Filter::Simple;
 use Want  qw(wantref want);
 use Data::Dumper;
 
-our $VERSION = '0.2';
+our $VERSION = '0.3';
 
 our @EXPORT      = qw(  pull Pull Push Pop clear qelem Queue  );
 

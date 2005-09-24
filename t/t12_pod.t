@@ -3,13 +3,19 @@ use Data::Dumper;
 use Test::More;
 use IO::File;
 
-my @musthave = ( 
-	qw(  NAME SYNOPSIS DESCRIPTION EXPORT AUTHOR ), 
-        'SEE ALSO',
-);
+our @musthave = ( qw(  NAME SYNOPSIS DESCRIPTION EXPORT AUTHOR), 'SEE ALSO');
 
+BEGIN {
+	eval 'require Pod::Checker' ;
+	if ($@) {
+		plan (skip_all => 'skipping: Pod::Checker not installed');
+		Posix::_exit(0) ;
+	}else{
+	     plan (tests => 1 + 6) ;
+	     import Pod::Checker;
+	}
+}
 
-plan tests=> 1  + @musthave ; 
 
 my $dir   =  ( $0 =~ m!^t/!) ? '.' : '..';
 my $file  =  "$dir/lib/String/TieStack.pm";

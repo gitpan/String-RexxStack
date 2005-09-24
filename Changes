@@ -1,4 +1,8 @@
 Revision history for Perl extension String::RexxStack.
+0.03  Fri Sep 23, 2005
+       - Packaging changes to keep CPANTS happy.
+       - Now, also builds with Module::Build.
+       - Added META.yaml
 
 0.02  Tue Sep  15 21:32:44 2003
         - Fixed pod syntax errors/warnings for RexxStack.pod

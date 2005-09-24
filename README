@@ -62,12 +62,11 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-Test::More
 Class::MethodMaker
 Filter::Simple
 Want
 Data::Dumper
-Pod::Checker
+
 
 COPYRIGHT AND LICENSE
 

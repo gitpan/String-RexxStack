@@ -1,6 +1,5 @@
-use Test::More;
+use Test::More tests=>11;
 use  String::TieStack;
-BEGIN { plan tests=> 11 }
 
 my $s = new String::TieStack;
 my $t = tie my @arr , 'String::TieStack';
